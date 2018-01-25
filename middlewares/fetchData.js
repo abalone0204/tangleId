@@ -1,7 +1,10 @@
 import fetch from 'isomorphic-unfetch'
 
 let DEFAULT_HOST = process.env.HOST_API
-const isJSONResponse = (response) => response.headers.get('content-type').startsWith('application/json')
+
+const isJSONResponse = (response) =>
+	response.headers.get('content-type').startsWith('application/json')
+
 const isJSONString = (text) => {
 	let result
 	try {
@@ -42,7 +45,6 @@ const fetchData = async function(
 			result = { text }
 		}
 	}
-	console.log('label: ', label)
 	if (label) {
 		result = Object.assign({}, result, label)
 	}

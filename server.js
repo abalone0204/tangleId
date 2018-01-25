@@ -17,7 +17,6 @@ const createKeyPair = require('./utils/createKeyPair')
 app.prepare()
 	.then(() => {
 		const server = express()
-
 		server.get('/', (req, res) => {
 			const actualPage = '/users'
 			return app.render(req, res, actualPage)
