@@ -42,8 +42,8 @@ const UserPage = (props) => {
 				{claims.length !== 0 && (
 					<ul>
 						{claims.map((c) => (
-							<li key={`claim-${c.id}`}>
-							claim: {JSON.stringify(c)}
+							<li key={`claim-${c}`}>
+							claim: {c}
 							</li>
 						))}
 					</ul>
@@ -83,7 +83,7 @@ UserPage.getInitialProps = async (context) => {
 	return {
 		id,
 		user,
-		claims: claims.filter(e => e.id === id),
+		claims,
 	}
 }
 
