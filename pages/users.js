@@ -2,13 +2,14 @@ import withRedux from 'next-redux-wrapper'
 import configureStore from '../store/configureStore'
 import fetchOffTangleUserList from '../actions/fetchOffTangleUserList'
 import checkTangleUsers from '../actions/checkTangleUsers'
-import Layout from '../layouts/Main'
+//import Layout from '../layouts/Main'
+import Layout from '../layouts/material/Main'
 import UserList from '../components/UserList'
 
 const UsersPage = (props) => {
-	const { userList } = props
+	const { userList, isLoading } = props
 	return (
-		<Layout>
+		<Layout isLoading={isLoading}>
 			<h2>Users</h2>
 			<UserList users={userList}></UserList>
 		</Layout>
@@ -26,11 +27,11 @@ UsersPage.getInitialProps = async (context) => {
 
 const mapStateToProps = (state) => {
 	const { users } = state
-	const { offTangleData, validData } = users
+	const { offTangleData, validData, isLoading } = users
 	const validIds = validData.map(v => v.id)
 	// TODO: Use selector to get better performance
 	const userList = offTangleData.filter(d => validIds.indexOf(d.id) !== -1)
-	return { userList }
+	return { userList, isLoading }
 }
 
 export default withRedux(configureStore, mapStateToProps)(UsersPage)

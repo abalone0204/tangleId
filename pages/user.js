@@ -6,12 +6,12 @@ import fetchOffTangleUserList from '../actions/fetchOffTangleUserList'
 import fetchClaims from '../actions/fetchClaims'
 import createClaim from '../actions/createClaim'
 import transformToQRCode from '../utils/transformToQRCode'
-import Layout from '../layouts/Main'
+//import Layout from '../layouts/Main'
+import Layout from '../layouts/material/Main'
 import SimpleForm from '../components/SimpleForm'
 
-
 const UserPage = (props) => {
-	const { claims, user, createClaim } = props
+	const { claims, user, createClaim, isLoading } = props
 	const { pk, sk, id, claim, qrcode, } = user
 	const handleSubmit = (values) => {
 		const params = Object.assign({
@@ -24,7 +24,7 @@ const UserPage = (props) => {
 		createClaim(params)
 	}
 	return (
-		<Layout>
+		<Layout isLoading={isLoading}>
 			<h2>{claim.firstName}</h2>
 			<img src={qrcode} alt="QRCode of id and public key"/>
 			<div>
@@ -95,7 +95,8 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state, ownProps) => {
 	const { user, claims } = ownProps
-	return { user, claims }
+	const { isLoading } = state.users
+	return { user, claims, isLoading}
 }
 
 export default withRedux(configureStore, mapStateToProps, mapDispatchToProps)(UserPage)

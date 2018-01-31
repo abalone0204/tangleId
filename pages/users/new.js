@@ -4,9 +4,9 @@ import withRedux from 'next-redux-wrapper'
 import configureStore from '../../store/configureStore'
 import fetchKeyPairs from '../../actions/fetchKeyPairs'
 import createNewIdentity from '../../actions/createIdentity'
-import Layout from '../../layouts/Main'
+//import Layout from '../../layouts/Main'
+import Layout from '../../layouts/material/Main'
 import SimpleForm from '../../components/SimpleForm'
-
 
 const NewUserPage = (props) => {
 	const { keyPairs, isLoading, createNewIdentity } = props
@@ -18,9 +18,8 @@ const NewUserPage = (props) => {
 		createNewIdentity(params)
 	}
 	return (
-		<Layout>
+		<Layout isLoading={isLoading}>
 			<h2>New Users</h2>
-
 			{isLoading && <p>loading ...</p>}
 			<p>
 				uuid: {uuid}
