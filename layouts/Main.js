@@ -1,12 +1,14 @@
 import Nav from '../components/Nav'
+import PersistentDrawer from '../components/material/PersistentDrawer'
 
 const MainLayout = (props) => (
 	<div>
 		<Nav />
-		<div>
-			{props.children}
-		</div>
+		{props.children}
 	</div>
+
+
+
 )
 
 export default MainLayout
